@@ -1,2 +1,6 @@
 rootProject.name = 'reservation_purchase'
 
+include 'module_eureka'
+include 'module_api_gateway'
+
+include 'module_user_service'
