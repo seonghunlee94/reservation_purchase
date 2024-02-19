@@ -4,3 +4,4 @@ include 'module_eureka'
 include 'module_api_gateway'
 
 include 'module_user_service'
+include 'module_product_service'
