@@ -1,10 +1,10 @@
-package org.example.prepurchase.domain.user.domain;
+package com.seonghun.module_user_service.domain.user.domain;
 
+import com.seonghun.module_user_service.global.auth.UserRoleEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.prepurchase.global.auth.UserRoleEnum;
 
 @Entity
 @Getter

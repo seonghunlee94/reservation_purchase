@@ -1,4 +1,4 @@
-package org.example.prepurchase.domain.user.dto;
+package com.seonghun.module_user_service.domain.user.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

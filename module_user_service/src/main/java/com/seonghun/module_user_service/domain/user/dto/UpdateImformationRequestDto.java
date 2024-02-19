@@ -1,4 +1,4 @@
-package org.example.prepurchase.domain.user.dto;
+package com.seonghun.module_user_service.domain.user.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -8,11 +8,18 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequestDto {
+public class UpdateImformationRequestDto {
 
     @NotNull
     private String username;
 
-    @NotNull
     private String password;
+
+    private String updatePassword;
+
+    private String greeting;
+
+    private String profileImage;
+
+
 }

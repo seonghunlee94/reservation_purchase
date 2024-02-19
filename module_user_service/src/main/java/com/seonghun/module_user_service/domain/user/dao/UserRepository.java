@@ -1,6 +1,6 @@
-package org.example.prepurchase.domain.user.dao;
+package com.seonghun.module_user_service.domain.user.dao;
 
-import org.example.prepurchase.domain.user.domain.Users;
+import com.seonghun.module_user_service.domain.user.domain.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

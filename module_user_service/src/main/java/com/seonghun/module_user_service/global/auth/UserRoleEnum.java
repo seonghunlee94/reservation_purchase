@@ -1,4 +1,4 @@
-package org.example.prepurchase.global.auth;
+package com.seonghun.module_user_service.global.auth;
 
 public enum UserRoleEnum {
     USER(Authority.USER),  // 사용자 권한

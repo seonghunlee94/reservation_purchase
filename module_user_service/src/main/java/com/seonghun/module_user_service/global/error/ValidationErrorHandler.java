@@ -1,4 +1,4 @@
-package org.example.prepurchase.global.error;
+package com.seonghun.module_user_service.global.error;
 
 
 import org.springframework.http.HttpStatus;

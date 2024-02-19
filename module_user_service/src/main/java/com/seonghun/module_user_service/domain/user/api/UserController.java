@@ -1,15 +1,14 @@
-package org.example.prepurchase.domain.user.api;
+package com.seonghun.module_user_service.domain.user.api;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.example.prepurchase.domain.user.application.UserService;
-import org.example.prepurchase.domain.user.domain.Users;
-import org.example.prepurchase.domain.user.dto.LoginRequestDto;
-import org.example.prepurchase.domain.user.dto.SignupRequestDto;
-import org.example.prepurchase.domain.user.dto.UpdateImformationRequestDto;
-import org.example.prepurchase.domain.user.exception.DuplicateException;
-import org.example.prepurchase.global.error.ErrorDto;
+import com.seonghun.module_user_service.domain.user.application.UserService;
+import com.seonghun.module_user_service.domain.user.domain.Users;
+import com.seonghun.module_user_service.domain.user.dto.LoginRequestDto;
+import com.seonghun.module_user_service.domain.user.dto.SignupRequestDto;
+import com.seonghun.module_user_service.domain.user.dto.UpdateImformationRequestDto;
+import com.seonghun.module_user_service.domain.user.exception.DuplicateException;
+import com.seonghun.module_user_service.global.error.ErrorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
