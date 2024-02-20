@@ -5,3 +5,4 @@ include 'module_api_gateway'
 
 include 'module_user_service'
 include 'module_product_service'
+include 'module_payment_service'
