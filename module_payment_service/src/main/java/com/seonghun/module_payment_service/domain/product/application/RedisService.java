@@ -11,17 +11,17 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RedisService {
 
-    private final RedisTemplate<String, Long> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
 
     // 키-벨류 설정
     public void setValues(String productName, Long stock){
-        ValueOperations<String, Long> values = redisTemplate.opsForValue();
-        values.set(productName, stock);
+        ValueOperations<String, String> values = redisTemplate.opsForValue();
+        values.set(productName, String.valueOf(stock));
     }
 
     // 키값으로 벨류 가져오기
-    public Long getValues(String productName){
-        ValueOperations<String, Long> values = redisTemplate.opsForValue();
+    public String getValues(String productName){
+        ValueOperations<String, String> values = redisTemplate.opsForValue();
         return values.get(productName);
     }
 

@@ -1,6 +1,7 @@
 package com.seonghun.module_payment_service.domain.product.api;
 
 import com.seonghun.module_payment_service.domain.product.application.PaymentService;
+import com.seonghun.module_payment_service.domain.product.application.RedisService;
 import com.seonghun.module_payment_service.domain.product.domain.Orders;
 import com.seonghun.module_payment_service.domain.product.dto.request.ProductOrderDto;
 import com.seonghun.module_payment_service.domain.product.dto.response.PaymentResponseDto;
@@ -16,20 +17,36 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     private final ModuleProductClient moduleProductClient;
+    private final RedisService redisService;
 
 
     @Autowired
-    public PaymentController(PaymentService paymentService, ModuleProductClient moduleProductClient) {
+    public PaymentController(PaymentService paymentService, ModuleProductClient moduleProductClient, RedisService redisService) {
         this.paymentService = paymentService;
         this.moduleProductClient = moduleProductClient;
+        this.redisService = redisService;
     }
+
+    /*
+        결제 페이지 이동 전에 redis에 값 넣어주기
+    */
+    @PostMapping("/stock/save/{productName}")
+    public ResponseEntity<Long> saveStock(@PathVariable String productName) {
+
+        Long productStock = moduleProductClient.getProckStock(productName);
+
+        redisService.setValues(productName, productStock);
+
+        return ResponseEntity.ok().body(productStock);
+    }
+
+
     /*
         결제 페이지 이동
     */
     @GetMapping("/buy/{productName}")
     public ResponseEntity<PaymentResponseDto> buyProduct(@PathVariable String productName) {
 
-        // 레디스에서 재고 가져오는 것으로 변경하기.
         Long productStock = moduleProductClient.getProckStock(productName);
 
         // 레디스 개수 감소로 변경하기
