@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-
-import java.time.Duration;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,20 +33,21 @@ public class RedisService {
     public Long increaseStock(String productName) {
         long currnetStock = Long.parseLong(getValues(productName));
 
-
-
-
         return null;
     }
 
 
     // 재고 감소
     public Long decreaseStock(String productName) {
-        long decreaseStock = Long.parseLong(getValues(productName)) - 1;
+        redisTemplate.opsForValue().decrement(productName);
 
-        setValues(productName, decreaseStock);
+//        long decreaseStock = Long.parseLong(getValues(productName)) - 1;
+//
+//        setValues(productName, decreaseStock);
 
-        return decreaseStock;
+//        return decreaseStock;
+        return null;
+
     }
 
 
