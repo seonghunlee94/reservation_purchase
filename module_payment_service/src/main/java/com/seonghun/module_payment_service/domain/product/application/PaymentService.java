@@ -28,15 +28,14 @@ public class PaymentService {
     */
     public PaymentResponseDto payProduct(String productName,Long stock) {
 
-        redisService.decreaseStock(productName);
-//        Long decreaseStock = redisService.decreaseStock(productName);
+        Long decreaseStock = redisService.decreaseStock(productName);
 
 
         return PaymentResponseDto.builder()
                 .id(null) // id 필요시 controller에서 받아오는 방식 고민해보기.
 //                .userId(name)
                 .productId(productName)
-                .stock(stock - 1)
+                .stock(decreaseStock)
                 .build();
 
     }
