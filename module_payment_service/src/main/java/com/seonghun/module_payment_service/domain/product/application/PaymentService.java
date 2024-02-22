@@ -15,22 +15,27 @@ import org.springframework.transaction.annotation.Transactional;
 public class PaymentService {
 
     private final OrderRepository orderRepository;
+    private final RedisService redisService;
 
     @Autowired
-    public PaymentService(OrderRepository orderRepository) {
+    public PaymentService(OrderRepository orderRepository, RedisService redisService) {
         this.orderRepository = orderRepository;
+        this.redisService = redisService;
     }
 
     /*
         결제 페이지 이동 시
     */
-    public PaymentResponseDto prePay(String productName,Long stock) {
+    public PaymentResponseDto payProduct(String productName,Long stock) {
+
+        Long decreaseStock = redisService.decreaseStock(productName);
+
 
         return PaymentResponseDto.builder()
                 .id(null) // id 필요시 controller에서 받아오는 방식 고민해보기.
 //                .userId(name)
                 .productId(productName)
-                .stock(stock)
+                .stock(decreaseStock)
                 .build();
 
     }

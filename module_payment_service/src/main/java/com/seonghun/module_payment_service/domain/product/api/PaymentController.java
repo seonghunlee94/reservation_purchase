@@ -28,7 +28,7 @@ public class PaymentController {
     }
 
     /*
-        결제 페이지 이동 전에 redis에 값 넣어주기
+        오픈 시간 전, redis에 값 넣어주기
     */
     @PostMapping("/stock/save/{productName}")
     public ResponseEntity<Long> saveStock(@PathVariable String productName) {
@@ -44,15 +44,30 @@ public class PaymentController {
     /*
         결제 페이지 이동
     */
+    @GetMapping("/check/{productName}")
+    public ResponseEntity<Long> getProductStock(@PathVariable String productName) {
+
+        Long productStock = moduleProductClient.getProckStock(productName);
+
+        return ResponseEntity.ok().body(productStock);
+
+    }
+
+    /*
+        결제 페이지 이동
+    */
     @GetMapping("/buy/{productName}")
     public ResponseEntity<PaymentResponseDto> buyProduct(@PathVariable String productName) {
 
         Long productStock = moduleProductClient.getProckStock(productName);
 
         // 레디스 개수 감소로 변경하기
-        PaymentResponseDto paymentInfo = paymentService.prePay(productName, productStock);
+        if (productStock > 0) {
+            PaymentResponseDto paymentInfo = paymentService.payProduct(productName, productStock);
+            return ResponseEntity.ok().body(paymentInfo);
+        }
 
-        return ResponseEntity.ok().body(paymentInfo);
+        return ResponseEntity.ok().body(null);
 
     }
 

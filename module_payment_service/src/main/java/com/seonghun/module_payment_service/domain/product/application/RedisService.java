@@ -29,4 +29,27 @@ public class RedisService {
     public void delValues(String username) {
         redisTemplate.delete(username);
     }
+
+    // 재고 증가
+    public Long increaseStock(String productName) {
+        long currnetStock = Long.parseLong(getValues(productName));
+
+
+
+
+        return null;
+    }
+
+
+    // 재고 감소
+    public Long decreaseStock(String productName) {
+        long decreaseStock = Long.parseLong(getValues(productName)) - 1;
+
+        setValues(productName, decreaseStock);
+
+        return decreaseStock;
+    }
+
+
+
 }
