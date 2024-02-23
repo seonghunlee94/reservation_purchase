@@ -2,8 +2,6 @@ package com.seonghun.module_product_service.domain.product.api;
 
 import com.seonghun.module_product_service.domain.product.application.ProductService;
 import com.seonghun.module_product_service.domain.product.domain.ProductStock;
-import com.seonghun.module_product_service.domain.product.dto.response.ProductResponseDto;
-import com.seonghun.module_product_service.domain.product.dto.response.ProductStockResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
