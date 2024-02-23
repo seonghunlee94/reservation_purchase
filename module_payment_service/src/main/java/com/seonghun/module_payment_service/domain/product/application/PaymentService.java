@@ -4,6 +4,7 @@ package com.seonghun.module_payment_service.domain.product.application;
 import com.seonghun.module_payment_service.domain.product.dao.OrderRepository;
 import com.seonghun.module_payment_service.domain.product.domain.Orders;
 import com.seonghun.module_payment_service.domain.product.dto.response.PaymentResponseDto;
+import com.seonghun.module_payment_service.global.client.ModuleProductClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,24 +17,25 @@ public class PaymentService {
 
     private final OrderRepository orderRepository;
     private final RedisService redisService;
+    private final ModuleProductClient moduleProductClient;
 
     @Autowired
-    public PaymentService(OrderRepository orderRepository, RedisService redisService) {
+    public PaymentService(OrderRepository orderRepository, RedisService redisService, ModuleProductClient moduleProductClient) {
         this.orderRepository = orderRepository;
         this.redisService = redisService;
+        this.moduleProductClient = moduleProductClient;
     }
 
     /*
         결제 페이지 이동 시
     */
-    public PaymentResponseDto payProduct(String productName,Long stock) {
+    public PaymentResponseDto payProduct(String productName) {
 
         Long decreaseStock = redisService.decreaseStock(productName);
 
+        moduleProductClient.updateProductStock(productName, decreaseStock);
 
         return PaymentResponseDto.builder()
-                .id(null) // id 필요시 controller에서 받아오는 방식 고민해보기.
-//                .userId(name)
                 .productId(productName)
                 .stock(decreaseStock)
                 .build();

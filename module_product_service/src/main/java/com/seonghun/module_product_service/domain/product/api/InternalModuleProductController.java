@@ -2,6 +2,7 @@ package com.seonghun.module_product_service.domain.product.api;
 
 import com.seonghun.module_product_service.domain.product.application.ProductService;
 import com.seonghun.module_product_service.domain.product.domain.ProductStock;
+import com.seonghun.module_product_service.domain.product.dto.response.ProductResponseDto;
 import com.seonghun.module_product_service.domain.product.dto.response.ProductStockResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,14 @@ public class InternalModuleProductController {
         Long stock = getProductStock.getStock();
         return ResponseEntity.ok().body(stock);
 
+    }
+
+    @PostMapping("/feign/save/stock")
+    public ResponseEntity<Void> updateProductStock(@RequestHeader String productName, @RequestHeader Long stock) {
+
+        productService.updateProductStock(productName, stock);
+
+        return ResponseEntity.ok().body(null);
     }
 
 }

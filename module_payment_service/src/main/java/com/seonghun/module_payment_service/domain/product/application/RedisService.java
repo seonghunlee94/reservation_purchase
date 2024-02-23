@@ -5,8 +5,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-
 @Service
 @RequiredArgsConstructor
 public class RedisService {
@@ -34,20 +32,20 @@ public class RedisService {
     public Long increaseStock(String productName) {
         long currnetStock = Long.parseLong(getValues(productName));
 
-
-
-
         return null;
     }
 
 
     // 재고 감소
     public Long decreaseStock(String productName) {
-        long decreaseStock = Long.parseLong(getValues(productName)) - 1;
+        Long stock = redisTemplate.opsForValue().decrement(productName);
+        if (stock < 0) {
+            redisTemplate.opsForValue().set(productName, "0");
+            throw new IllegalArgumentException("재고가 부족합니다.");
+        }
 
-        setValues(productName, decreaseStock);
+        return stock;
 
-        return decreaseStock;
     }
 
 
