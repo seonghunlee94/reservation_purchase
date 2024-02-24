@@ -23,10 +23,6 @@ public class RedisService {
         return values.get(productName);
     }
 
-    // 키-벨류 삭제
-    public void delValues(String username) {
-        redisTemplate.delete(username);
-    }
 
     // 재고 증가
     public Long increaseStock(String productName) {
@@ -39,6 +35,7 @@ public class RedisService {
     // 재고 감소
     public Long decreaseStock(String productName) {
         Long stock = redisTemplate.opsForValue().decrement(productName);
+
         if (stock < 0) {
             redisTemplate.opsForValue().set(productName, "0");
             throw new IllegalArgumentException("재고가 부족합니다.");

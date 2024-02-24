@@ -19,6 +19,7 @@ public class PaymentService {
     private final RedisService redisService;
     private final ModuleProductClient moduleProductClient;
 
+
     @Autowired
     public PaymentService(OrderRepository orderRepository, RedisService redisService, ModuleProductClient moduleProductClient) {
         this.orderRepository = orderRepository;
@@ -31,8 +32,10 @@ public class PaymentService {
     */
     public PaymentResponseDto payProduct(String productName) {
 
+        // 레디스 재고 감소
         Long decreaseStock = redisService.decreaseStock(productName);
 
+        // DB에 redis 값 매핑
         moduleProductClient.updateProductStock(productName, decreaseStock);
 
         return PaymentResponseDto.builder()

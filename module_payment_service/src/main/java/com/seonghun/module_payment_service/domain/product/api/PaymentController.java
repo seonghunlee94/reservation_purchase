@@ -1,5 +1,6 @@
 package com.seonghun.module_payment_service.domain.product.api;
 
+import com.seonghun.module_payment_service.domain.product.application.DistributedLockService;
 import com.seonghun.module_payment_service.domain.product.application.PaymentService;
 import com.seonghun.module_payment_service.domain.product.application.RedisService;
 import com.seonghun.module_payment_service.domain.product.domain.Orders;
@@ -18,13 +19,15 @@ public class PaymentController {
 
     private final ModuleProductClient moduleProductClient;
     private final RedisService redisService;
+    private final DistributedLockService distributedLockService;
 
 
     @Autowired
-    public PaymentController(PaymentService paymentService, ModuleProductClient moduleProductClient, RedisService redisService) {
+    public PaymentController(PaymentService paymentService, ModuleProductClient moduleProductClient, RedisService redisService, DistributedLockService distributedLockService) {
         this.paymentService = paymentService;
         this.moduleProductClient = moduleProductClient;
         this.redisService = redisService;
+        this.distributedLockService = distributedLockService;
     }
 
     /*
@@ -48,7 +51,6 @@ public class PaymentController {
     public ResponseEntity<Long> getProductStock(@PathVariable String productName) {
 
         Long productStock = moduleProductClient.getProduckStock(productName);
-        // 재고가 없는 경우 예외 처리 해주기.
 
         return ResponseEntity.ok().body(productStock);
 
@@ -58,18 +60,16 @@ public class PaymentController {
         결제 -
     */
     @PostMapping("/buy/{productName}")
-    public ResponseEntity<PaymentResponseDto> buyProduct(@PathVariable String productName) {
+    public ResponseEntity<PaymentResponseDto> buyProduct(@PathVariable String productName) throws InterruptedException {
 
         Long productStock = moduleProductClient.getProduckStock(productName);
 
         // 레디스 개수 감소로 변경하기
         if (productStock > 0) {
-            PaymentResponseDto paymentInfo = paymentService.payProduct(productName);
-            // user Id @RequestHeader로 받아서 넣어주기.
-            // paymentInfo.userId();
-            return ResponseEntity.ok().body(paymentInfo);
-        } else if(productStock == 0) {
 
+            PaymentResponseDto paymentInfo = distributedLockService.payProductDistributedLock(productName);
+
+            return ResponseEntity.ok().body(paymentInfo);
         }
 
         return ResponseEntity.ok().body(null);
