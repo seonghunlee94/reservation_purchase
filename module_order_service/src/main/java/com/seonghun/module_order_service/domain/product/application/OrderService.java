@@ -24,17 +24,17 @@ public class OrderService {
     /*
         결제 시 Order 테이블에 반영
     */
-    public OrderResponseDto orderProduct(String id, String productId) {
+    public OrderResponseDto orderProduct(String productId, String username) {
 
         Orders order = new Orders();
-        order.setUserId(id);
+        order.setUserId(username);
         order.setProductId(productId);
 
         order = orderRepository.save(order);
 
         return OrderResponseDto.builder()
                 .id(order.getId())
-                .userId(id)
+                .userId(username)
                 .productId(productId)
                 .build();
     }

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/orders")
 public class OrderController {
 
-    private final OrderService paymentService;
+    private final OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService paymentService) {
-        this.paymentService = paymentService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
 
@@ -27,7 +27,7 @@ public class OrderController {
 
         String productId = order.productId();
         String username = order.username();
-        OrderResponseDto orderProduct = paymentService.orderProduct(username, productId);
+        OrderResponseDto orderProduct = orderService.orderProduct(productId, username);
 
         return ResponseEntity.ok().body(orderProduct);
     }
