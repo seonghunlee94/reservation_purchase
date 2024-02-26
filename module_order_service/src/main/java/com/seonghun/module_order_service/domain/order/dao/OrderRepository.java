@@ -1,6 +1,6 @@
-package com.seonghun.module_order_service.domain.product.dao;
+package com.seonghun.module_order_service.domain.order.dao;
 
-import com.seonghun.module_order_service.domain.product.domain.Orders;
+import com.seonghun.module_order_service.domain.order.domain.Orders;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

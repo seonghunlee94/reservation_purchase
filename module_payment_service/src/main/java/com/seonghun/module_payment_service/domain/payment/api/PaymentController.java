@@ -1,8 +1,8 @@
-package com.seonghun.module_payment_service.domain.product.api;
+package com.seonghun.module_payment_service.domain.payment.api;
 
-import com.seonghun.module_payment_service.domain.product.application.DistributedLockService;
-import com.seonghun.module_payment_service.domain.product.application.RedisService;
-import com.seonghun.module_payment_service.domain.product.dto.response.PaymentResponseDto;
+import com.seonghun.module_payment_service.domain.payment.application.DistributedLockService;
+import com.seonghun.module_payment_service.domain.payment.application.RedisService;
+import com.seonghun.module_payment_service.domain.payment.dto.response.PaymentResponseDto;
 import com.seonghun.module_payment_service.global.client.ModuleOrderClient;
 import com.seonghun.module_payment_service.global.client.ModuleProductClient;
 import org.springframework.beans.factory.annotation.Autowired;

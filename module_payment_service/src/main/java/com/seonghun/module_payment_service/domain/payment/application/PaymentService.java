@@ -1,6 +1,6 @@
-package com.seonghun.module_payment_service.domain.product.application;
+package com.seonghun.module_payment_service.domain.payment.application;
 
-import com.seonghun.module_payment_service.domain.product.dto.response.PaymentResponseDto;
+import com.seonghun.module_payment_service.domain.payment.dto.response.PaymentResponseDto;
 import com.seonghun.module_payment_service.global.client.ModuleProductClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

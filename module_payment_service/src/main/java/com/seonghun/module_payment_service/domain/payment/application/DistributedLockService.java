@@ -1,6 +1,6 @@
-package com.seonghun.module_payment_service.domain.product.application;
+package com.seonghun.module_payment_service.domain.payment.application;
 
-import com.seonghun.module_payment_service.domain.product.dto.response.PaymentResponseDto;
+import com.seonghun.module_payment_service.domain.payment.dto.response.PaymentResponseDto;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;

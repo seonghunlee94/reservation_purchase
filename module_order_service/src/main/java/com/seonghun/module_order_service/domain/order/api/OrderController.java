@@ -1,8 +1,8 @@
-package com.seonghun.module_order_service.domain.product.api;
+package com.seonghun.module_order_service.domain.order.api;
 
-import com.seonghun.module_order_service.domain.product.application.OrderService;
-import com.seonghun.module_order_service.domain.product.dto.request.OrderRequestDto;
-import com.seonghun.module_order_service.domain.product.dto.response.OrderResponseDto;
+import com.seonghun.module_order_service.domain.order.application.OrderService;
+import com.seonghun.module_order_service.domain.order.dto.request.OrderRequestDto;
+import com.seonghun.module_order_service.domain.order.dto.response.OrderResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

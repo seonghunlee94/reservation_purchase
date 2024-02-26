@@ -1,6 +1,6 @@
-package com.seonghun.module_order_service.domain.product.dto.response;
+package com.seonghun.module_order_service.domain.order.dto.response;
 
-import com.seonghun.module_order_service.domain.product.domain.Orders;
+import com.seonghun.module_order_service.domain.order.domain.Orders;
 import lombok.Builder;
 
 @Builder

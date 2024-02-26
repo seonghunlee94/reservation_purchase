@@ -1,4 +1,4 @@
-package com.seonghun.module_payment_service.domain.product.application;
+package com.seonghun.module_payment_service.domain.payment.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

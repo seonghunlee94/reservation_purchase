@@ -1,4 +1,4 @@
-package com.seonghun.module_payment_service.domain.product.dto.response;
+package com.seonghun.module_payment_service.domain.payment.dto.response;
 
 import lombok.Builder;
 

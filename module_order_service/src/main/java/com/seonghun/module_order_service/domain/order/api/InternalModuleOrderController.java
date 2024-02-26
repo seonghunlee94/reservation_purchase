@@ -1,6 +1,6 @@
-package com.seonghun.module_order_service.domain.product.api;
+package com.seonghun.module_order_service.domain.order.api;
 
-import com.seonghun.module_order_service.domain.product.application.OrderService;
+import com.seonghun.module_order_service.domain.order.application.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

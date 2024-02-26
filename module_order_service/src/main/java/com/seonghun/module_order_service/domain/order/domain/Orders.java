@@ -1,4 +1,4 @@
-package com.seonghun.module_order_service.domain.product.domain;
+package com.seonghun.module_order_service.domain.order.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;

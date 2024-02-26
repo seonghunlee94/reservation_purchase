@@ -1,9 +1,9 @@
-package com.seonghun.module_order_service.domain.product.application;
+package com.seonghun.module_order_service.domain.order.application;
 
 
-import com.seonghun.module_order_service.domain.product.dao.OrderRepository;
-import com.seonghun.module_order_service.domain.product.domain.Orders;
-import com.seonghun.module_order_service.domain.product.dto.response.OrderResponseDto;
+import com.seonghun.module_order_service.domain.order.dao.OrderRepository;
+import com.seonghun.module_order_service.domain.order.domain.Orders;
+import com.seonghun.module_order_service.domain.order.dto.response.OrderResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
