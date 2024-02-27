@@ -3,7 +3,6 @@ package com.seonghun.module_payment_service.domain.payment.api;
 import com.seonghun.module_payment_service.domain.payment.application.DistributedLockService;
 import com.seonghun.module_payment_service.domain.payment.application.RedisService;
 import com.seonghun.module_payment_service.domain.payment.dto.response.PaymentResponseDto;
-import com.seonghun.module_payment_service.global.client.ModuleOrderClient;
 import com.seonghun.module_payment_service.global.client.ModuleProductClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     private final ModuleProductClient moduleProductClient;
-    private final ModuleOrderClient moduleOrderClient;
     private final RedisService redisService;
     private final DistributedLockService distributedLockService;
 
 
     @Autowired
-    public PaymentController(ModuleProductClient moduleProductClient, ModuleOrderClient moduleOrderClient, RedisService redisService, DistributedLockService distributedLockService) {
+    public PaymentController(ModuleProductClient moduleProductClient, RedisService redisService, DistributedLockService distributedLockService) {
         this.moduleProductClient = moduleProductClient;
-        this.moduleOrderClient = moduleOrderClient;
         this.redisService = redisService;
         this.distributedLockService = distributedLockService;
     }
@@ -64,8 +61,7 @@ public class PaymentController {
         // 레디스 개수 감소로 변경하기
         if (productStock > 0) {
 
-            PaymentResponseDto paymentInfo = distributedLockService.payProductDistributedLock(productName);
-            moduleOrderClient.orderProduct(productName, userId);
+            PaymentResponseDto paymentInfo = distributedLockService.payProductDistributedLock(productName, userId);
 
             return ResponseEntity.ok().body(paymentInfo);
         }

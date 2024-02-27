@@ -9,6 +9,6 @@ public interface ModuleOrderClient {
 
 
     @PostMapping("/create")
-    void orderProduct(@RequestHeader String productId, @RequestHeader String username);
+    void orderProduct(@RequestHeader String productName, @RequestHeader String username);
 
 }

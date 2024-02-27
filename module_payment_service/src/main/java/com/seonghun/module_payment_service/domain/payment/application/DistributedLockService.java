@@ -46,13 +46,13 @@ public class DistributedLockService {
     }
 
     // 사용 예시
-    public PaymentResponseDto payProductDistributedLock(String productName) throws InterruptedException {
+    public PaymentResponseDto payProductDistributedLock(String productName, String userId) throws InterruptedException {
         // 분산 락 획득
         acquireLock();
         PaymentResponseDto payment;
         try {
             // Lock 걸어서 제품 개수 감소
-            payment = paymentService.payProduct(productName);
+            payment = paymentService.payProduct(productName, userId);
 
         } finally {
             // 분산 락 해제

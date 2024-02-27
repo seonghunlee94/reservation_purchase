@@ -15,23 +15,29 @@ public class PaymentService {
     private final RedisService redisService;
     private final ModuleProductClient moduleProductClient;
 
+    private final OrderMessageService orderMessageService;
 
     @Autowired
-    public PaymentService(RedisService redisService, ModuleProductClient moduleProductClient) {
+    public PaymentService(RedisService redisService, ModuleProductClient moduleProductClient, OrderMessageService orderMessageService) {
         this.redisService = redisService;
         this.moduleProductClient = moduleProductClient;
+        this.orderMessageService = orderMessageService;
     }
 
     /*
         결제 페이지 이동 시
     */
-    public PaymentResponseDto payProduct(String productName) {
+    public PaymentResponseDto payProduct(String productName, String userId) {
 
         // 레디스 재고 감소
         Long decreaseStock = redisService.decreaseStock(productName);
 
         // DB에 redis 값 매핑
         moduleProductClient.updateProductStock(productName, decreaseStock);
+
+        // rabbitMQ 데이터 큐 보내기.
+        orderMessageService.sendOrder(productName, userId);
+
 
         return PaymentResponseDto.builder()
                 .productId(productName)
