@@ -10,7 +10,7 @@ public record OrderResponseDto(
 
         String userId,
 
-        String productId,
+        String productName,
 
         String status
 
@@ -19,7 +19,7 @@ public record OrderResponseDto(
         return OrderResponseDto.builder()
                 .id(order.getId())
                 .userId(order.getUserId())
-                .productId(order.getProductId())
+                .productName(order.getProductName())
                 .build();
     }
 }

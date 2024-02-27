@@ -17,7 +17,7 @@ public class Orders {
     private String userId;
 
     @Column(nullable = false)
-    private String productId;
+    private String productName;
 
     @Column
     private String status;

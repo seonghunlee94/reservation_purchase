@@ -8,7 +8,7 @@ public record OrderRequestDto(
         Long id,
 
         String username,
-        String productId
+        String productName
 
 ) {
 

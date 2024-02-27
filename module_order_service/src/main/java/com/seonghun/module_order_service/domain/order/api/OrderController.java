@@ -25,9 +25,9 @@ public class OrderController {
     @PostMapping("/create")
     public ResponseEntity<OrderResponseDto> orderProduct(@RequestBody OrderRequestDto order) {
 
-        String productId = order.productId();
+        String productName = order.productName();
         String username = order.username();
-        OrderResponseDto orderProduct = orderService.orderProduct(productId, username);
+        OrderResponseDto orderProduct = orderService.orderProduct(productName, username);
 
         return ResponseEntity.ok().body(orderProduct);
     }

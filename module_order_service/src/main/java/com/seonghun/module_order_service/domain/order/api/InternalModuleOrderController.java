@@ -18,9 +18,9 @@ public class InternalModuleOrderController {
 
 
     @PostMapping("/feign/create")
-    public void orderProduct(@RequestHeader String productId, @RequestHeader String username) {
+    public void orderProduct(@RequestHeader String productName, @RequestHeader String username) {
 
-        orderService.orderProduct(productId, username);
+        orderService.orderProduct(productName, username);
 
     }
 
