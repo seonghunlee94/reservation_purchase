@@ -26,7 +26,7 @@
 ![reservation-purchase-architecture](https://github.com/seonghunlee94/reservation_purchase/assets/85480460/c02e1dce-f0e6-4ae2-b413-f44a2190ec49)
 
 
-## docker-compose
+## Docker Compose
 ```
 - docker-compose up : 도커 실행
 ```
