@@ -29,5 +29,5 @@
 ## Docker Compose
 * 실행
 ```
-- docker-compose up
+docker-compose up
 ```
